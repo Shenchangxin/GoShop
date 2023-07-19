@@ -83,43 +83,4 @@ func GetUserList(ctx *gin.Context) {
 	}
 	ctx.JSON(http.StatusOK, result)
 
-	//拨号连接用户grpc服务器 跨域的问题 - 后端解决 也可以前端来解决
-	//claims, _ := ctx.Get("claims")
-	//currentUser := claims.(*models.CustomClaims)
-	//zap.S().Infof("访问用户: %d", currentUser.ID)
-	////生成grpc的client并调用接口
-	//
-	//pn := ctx.DefaultQuery("pn", "0")
-	//pnInt, _ := strconv.Atoi(pn)
-	//pSize := ctx.DefaultQuery("psize", "10")
-	//pSizeInt, _ := strconv.Atoi(pSize)
-	//
-	//rsp, err := global.UserSrvClient.GetUserList(context.Background(), &proto.PageInfo{
-	//	Pn:    uint32(pnInt),
-	//	PSize: uint32(pSizeInt),
-	//})
-	//if err != nil {
-	//	zap.S().Errorw("[GetUserList] 查询 【用户列表】失败")
-	//	HandleGrpcErrorToHttp(err, ctx)
-	//	return
-	//}
-	//
-	//reMap := gin.H{
-	//	"total": rsp.Total,
-	//}
-	//result := make([]interface{}, 0)
-	//for _, value := range rsp.Data {
-	//	user := reponse.UserResponse{
-	//		Id:       value.Id,
-	//		NickName: value.NickName,
-	//		//Birthday: time.Time(time.Unix(int64(value.BirthDay), 0)).Format("2006-01-02"),
-	//		Birthday: reponse.JsonTime(time.Unix(int64(value.BirthDay), 0)),
-	//		Gender:   value.Gender,
-	//		Mobile:   value.Mobile,
-	//	}
-	//	result = append(result, user)
-	//}
-	//
-	//reMap["data"] = result
-	//ctx.JSON(http.StatusOK, reMap)
 }
