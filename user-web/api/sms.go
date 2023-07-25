@@ -1,13 +1,13 @@
 package api
 
 import (
+	"context"
 	"fmt"
 	"math/rand"
 	"mxshop-api/user-web/forms"
 	"net/http"
 	"strings"
 	"time"
-	"context"
 
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 	"github.com/aliyun/alibaba-cloud-sdk-go/services/dysmsapi"
@@ -38,7 +38,7 @@ func SendSms(ctx *gin.Context) {
 		return
 	}
 
-	client, err := dysmsapi.NewClientWithAccessKey("cn-beijing", global.ServerConfig.AliSmsInfo.ApiKey, global.ServerConfig.AliSmsInfo.ApiSecrect)
+	client, err := dysmsapi.NewClientWithAccessKey("cn-shanghai", global.ServerConfig.AliSmsInfo.ApiKey, global.ServerConfig.AliSmsInfo.ApiSecrect)
 	if err != nil {
 		panic(err)
 	}
@@ -49,10 +49,10 @@ func SendSms(ctx *gin.Context) {
 	request.Domain = "dysmsapi.aliyuncs.com"
 	request.Version = "2017-05-25"
 	request.ApiName = "SendSms"
-	request.QueryParams["RegionId"] = "cn-beijing"
-	request.QueryParams["PhoneNumbers"] = sendSmsForm.Mobile                           //手机号
-	request.QueryParams["SignName"] = "慕学在线"                                       //阿里云验证过的项目名 自己设置
-	request.QueryParams["TemplateCode"] = "SMS_181850725"                          //阿里云的短信模板号 自己设置
+	request.QueryParams["RegionId"] = "cn-shanghai"
+	request.QueryParams["PhoneNumbers"] = sendSmsForm.Mobile            //手机号
+	request.QueryParams["SignName"] = "申长鑫个人博客"                         //阿里云验证过的项目名 自己设置
+	request.QueryParams["TemplateCode"] = "SMS_269200237"               //阿里云的短信模板号 自己设置
 	request.QueryParams["TemplateParam"] = "{\"code\":" + smsCode + "}" //短信模板中的验证码内容 自己生成   之前试过直接返回，但是失败，加上code成功。
 	response, err := client.ProcessCommonRequest(request)
 	fmt.Print(client.DoAction(request, response))
@@ -61,11 +61,11 @@ func SendSms(ctx *gin.Context) {
 	}
 	//将验证码保存起来 - redis
 	rdb := redis.NewClient(&redis.Options{
-		Addr:fmt.Sprintf("%s:%d", global.ServerConfig.RedisInfo.Host, global.ServerConfig.RedisInfo.Port),
+		Addr: fmt.Sprintf("%s:%d", global.ServerConfig.RedisInfo.Host, global.ServerConfig.RedisInfo.Port),
 	})
 	rdb.Set(context.Background(), sendSmsForm.Mobile, smsCode, time.Duration(global.ServerConfig.RedisInfo.Expire)*time.Second)
 
 	ctx.JSON(http.StatusOK, gin.H{
-		"msg":"发送成功",
+		"msg": "发送成功",
 	})
 }

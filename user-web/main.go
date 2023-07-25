@@ -20,7 +20,7 @@ import (
 	myvalidator "mxshop-api/user-web/validator"
 )
 
-func main()  {
+func main() {
 	//1. 初始化logger
 	initialize.InitLogger()
 
@@ -39,7 +39,7 @@ func main()  {
 	viper.AutomaticEnv()
 	//如果是本地开发环境端口号固定，线上环境启动获取端口号
 	debug := viper.GetBool("MXSHOP_DEBUG")
-	if !debug{
+	if !debug {
 		port, err := utils.GetFreePort()
 		if err == nil {
 			global.ServerConfig.Port = port
@@ -66,12 +66,12 @@ func main()  {
 	}
 
 	/*
-	1. S()可以获取一个全局的sugar，可以让我们自己设置一个全局的logger
-	2. 日志是分级别的，debug， info ， warn， error， fetal
-	3. S函数和L函数很有用， 提供了一个全局的安全访问logger的途径
-	 */
+		1. S()可以获取一个全局的sugar，可以让我们自己设置一个全局的logger
+		2. 日志是分级别的，debug， info ， warn， error， fetal
+		3. S函数和L函数很有用， 提供了一个全局的安全访问logger的途径
+	*/
 	zap.S().Debugf("启动服务器, 端口： %d", global.ServerConfig.Port)
-	if err := Router.Run(fmt.Sprintf(":%d", global.ServerConfig.Port)); err != nil{
+	if err := Router.Run(fmt.Sprintf(":%d", global.ServerConfig.Port)); err != nil {
 		zap.S().Panic("启动失败:", err.Error())
 	}
 

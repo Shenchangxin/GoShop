@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/consul/api"
-	)
+)
 
 type Registry struct{
 	Host string

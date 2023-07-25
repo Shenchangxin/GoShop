@@ -8,7 +8,6 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/vo"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
-
 	"mxshop-api/user-web/global"
 )
 
@@ -29,7 +28,6 @@ func InitConfig() {
 	v := viper.New()
 	//文件的路径如何设置
 	v.SetConfigFile(configFileName)
-	fmt.Println(configFileName)
 	if err := v.ReadInConfig(); err != nil {
 		panic(err)
 	}
@@ -79,6 +77,6 @@ func InitConfig() {
 	if err != nil {
 		zap.S().Fatalf("读取nacos配置失败： %s", err.Error())
 	}
-	fmt.Println(&global.ServerConfig)
+	fmt.Println(global.ServerConfig)
 
 }
