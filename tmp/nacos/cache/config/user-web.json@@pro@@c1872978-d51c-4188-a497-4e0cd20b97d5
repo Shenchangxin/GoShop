@@ -1,6 +1,7 @@
 {
   "name": "user-web",
   "host": "192.168.44.20",
+  "tags": ["imooc","bobby","user","web"],
   "port": 8021,
   "user_srv": {
     "host": "localhost",

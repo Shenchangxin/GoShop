@@ -1,5 +1,6 @@
 {
   "name": "goods-web",
+  "tags": ["imooc","bobby","goods","web"],
   "host": "192.168.44.20",
   "port": 8022,
   "goods_srv": {
