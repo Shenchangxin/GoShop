@@ -13,8 +13,13 @@ group: 'dev'
 #jwt:
 #  key:
 #sms:
+<<<<<<< HEAD
 #  key:
 #  secrect:
+=======
+#  key: 
+#  secrect: 
+>>>>>>> 63be52a3cb125d5af1152168247f17adb9011b62
 #  expire: 300
 #
 #redis:
