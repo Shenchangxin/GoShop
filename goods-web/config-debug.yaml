@@ -13,8 +13,8 @@ group: 'dev'
 #jwt:
 #  key:
 #sms:
-#  key: 'LTAI5tDqXNYpkC5uGrQwznXu'
-#  secrect: 'muegZ80p0ewcdkrFDzWLaM0xBxUxeB'
+#  key:
+#  secrect:
 #  expire: 300
 #
 #redis:

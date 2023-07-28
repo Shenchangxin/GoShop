@@ -1,0 +1,7 @@
+host: 'localhost'
+port: 8848
+namespace: '49e6ec3d-b8df-4811-bdff-2242ea6e264e'
+user: 'nacos'
+password: 'nacos'
+dataid: 'oss-web.json'
+group: 'pro'
